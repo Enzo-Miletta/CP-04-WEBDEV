@@ -1,0 +1,100 @@
+.contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+}
+
+.contato h1{
+    font-size: 60px;
+    color: #333;
+}
+
+
+.contato section:first-child{
+    margin-top: 2rem;
+    align-self: flex-start;
+    width: 50%;
+}
+
+.contato .redes{
+    display: flex;
+    margin-top: 4rem;
+    gap: 1rem;
+}
+
+
+.contato section:last-child{
+    width: 50%;
+    padding-left: 5rem;
+    border-left: 2px solid #B9B7B7;
+}
+
+.contato form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.contato form .inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contato form .inputs label{
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 28px;
+}
+
+.contato form .inputs input, .contato form .inputs textarea{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 18px;
+    border: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+}
+
+.contato form .inputs textarea{
+    resize: none;
+    margin-top: -1rem;
+}
+
+.contato form button{
+    margin: 2.5rem 0;
+    font-weight: 700;
+    padding: 0.5rem 6rem;
+    background-color: #6975E8;
+    color: #fff;
+    font-size: 20px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contato form button:hover{
+    background-color: #5A68E8;
+}
+
+.contato .redes a{
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.contato .redes a:hover{
+    transform: scale(1.1);
+}
+
+.contato .redes a:first-child, .contato .redes a:last-child{
+    background-color: #6975E8;
+}
