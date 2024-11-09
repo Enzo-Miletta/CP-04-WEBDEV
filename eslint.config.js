@@ -1,38 +1,49 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+// eslint.config.js
+import prettier from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
-  { ignores: ['dist'] },
+  // Configurações principais
+  'eslint:recommended',
+  react.configs.recommended, // Regras recomendadas para React
+  reactHooks.configs.recommended, // Regras recomendadas para hooks do React
+  prettier,
+  eslintConfigPrettier, // Desativa regras de formatação conflitantes
+
+  // Plugins e regras adicionais
   {
-    files: ['**/*.{js,jsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    settings: { react: { version: '18.3' } },
     plugins: {
       react,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      import: importPlugin,
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': [
+      // Organização dos imports
+      'import/order': [
         'warn',
-        { allowConstantExport: true },
+        {
+          groups: [
+            'builtin', // Módulos nativos (ex.: fs, path)
+            'external', // Pacotes externos (ex.: React, Lodash)
+            'internal', // Imports internos do projeto (útil para alias ou imports absolutos)
+            'parent', // Diretório pai (ex.: ../utils)
+            'sibling', // Diretório atual (ex.: ./Component)
+            'index', // Arquivos index.js ou index.ts
+          ],
+          'newlines-between': 'always', // Linha em branco entre grupos de imports
+          alphabetize: { order: 'asc', caseInsensitive: true }, // Ordenação alfabética
+        },
       ],
+      'import/newline-after-import': ['warn', { count: 1 }], // Linha em branco após o último import
+      'import/no-duplicates': 'warn', // Evita imports duplicados
+      'react/react-in-jsx-scope': 'on', // Desativa a necessidade de React no escopo para JSX (React 17+)
+    },
+    settings: {
+      react: {
+        version: 'detect', // Detecta automaticamente a versão do React
+      },
     },
   },
-]
+];
